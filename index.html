@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversion with Time Adverbials · B2+ practice</title>
+    <style>
+        /* ----- modern, soft palette, mobile-friendly ----- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(145deg, #f6f9fc 0%, #e9f0f5 100%);
+            min-height: 100vh;
+            padding: 1.5rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            color: #1e2b37;
+            line-height: 1.5;
+        }
+        .card {
+            max-width: 860px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px -12px rgba(0, 20, 30, 0.25), 0 8px 20px -8px rgba(0, 20, 30, 0.15);
+            padding: 2rem 1.8rem;
+            transition: all 0.2s ease;
+        }
+        @media (max-width: 480px) {
+            .card { padding: 1.5rem 1.2rem; border-radius: 24px; }
+        }
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #1e3b4f;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .subhead {
+            font-size: 1.1rem;
+            color: #4a6579;
+            margin-bottom: 2rem;
+            border-left: 5px solid #a4c9e0;
+            padding-left: 1rem;
+            font-weight: 400;
+        }
+
+        /* ----- NAME ENTRY ----- */
+        .name-section {
+            background: #f0f7fd;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem;
+            margin-bottom: 2rem;
+            border: 1px solid #d4e6f3;
+            text-align: center;
+        }
+        .name-section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e3b4f;
+            margin-bottom: 0.6rem;
+        }
+        .name-section p {
+            color: #4a6579;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+        .name-input-group {
+            display: flex;
+            gap: 0.6rem;
+            max-width: 420px;
+            margin: 0 auto;
+        }
+        .name-input-group input {
+            flex: 1;
+            padding: 0.85rem 1.1rem;
+            font-size: 1.05rem;
+            border-radius: 16px;
+            border: 1.5px solid #c4d9e9;
+            font-family: inherit;
+            transition: border 0.15s, box-shadow 0.15s;
+        }
+        .name-input-group input:focus {
+            outline: none;
+            border-color: #3d7ea6;
+            box-shadow: 0 0 0 3px rgba(61, 126, 166, 0.15);
+        }
+        .btn-start {
+            background: #3d7ea6;
+            color: white;
+            border: none;
+            padding: 0.85rem 1.6rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 16px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.2s, transform 0.1s;
+            white-space: nowrap;
+        }
+        .btn-start:hover {
+            background: #2e6a8f;
+        }
+        .btn-start:active {
+            transform: scale(0.97);
+        }
+        .name-error {
+            color: #c24a4a;
+            font-size: 0.9rem;
+            margin-top: 0.6rem;
+            display: none;
+        }
+        .greeting {
+            background: #e1f3e8;
+            border-radius: 18px;
+            padding: 1rem 1.4rem;
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
+            color: #115a36;
+            border-left: 5px solid #2b8c5e;
+            display: none;
+        }
+
+        /* ----- EXERCISES (hidden until name entered) ----- */
+        #quizArea {
+            display: none;
+        }
+
+        .exercise-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: #1e3b4f;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .exercise-title span {
+            background: #d9e9f5;
+            color: #1e3b4f;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+        }
+        .question-item {
+            background: #f9fcff;
+            border-radius: 20px;
+            padding: 1.2rem 1.3rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #e2edf5;
+            transition: border 0.15s;
+        }
+        .question-item.correct-highlight {
+            border-left: 6px solid #2b8c5e;
+            background: #f4fcf7;
+        }
+        .question-item.wrong-highlight {
+            border-left: 6px solid #c24a4a;
+            background: #fff7f7;
+        }
+        .q-text {
+            font-weight: 500;
+            margin-bottom: 0.9rem;
+            font-size: 1.05rem;
+        }
+        .q-text .q-num {
+            display: inline-block;
+            background: #d0e2f0;
+            color: #1e3b4f;
+            font-size: 0.85rem;
+            font-weight: 600;
+            width: 1.7rem;
+            height: 1.7rem;
+            line-height: 1.7rem;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 0.6rem;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            background: #ffffff;
+            padding: 0.6rem 1rem;
+            border-radius: 14px;
+            border: 1.5px solid #d7e4ed;
+            cursor: pointer;
+            transition: background 0.1s, border 0.1s;
+            font-size: 1rem;
+        }
+        .option:hover {
+            background: #f2f9ff;
+            border-color: #9bbdd6;
+        }
+        .option input[type="radio"] {
+            margin-top: 0.2rem;
+            accent-color: #3d7ea6;
+            width: 1.1rem;
+            height: 1.1rem;
+            flex-shrink: 0;
+        }
+        .option.selected {
+            background: #e2eef9;
+            border-color: #5e93b5;
+        }
+        .option.correct-option {
+            background: #d9f0e3;
+            border-color: #2b8c5e;
+        }
+        .option.wrong-option {
+            background: #fbe2e2;
+            border-color: #c24a4a;
+        }
+        .fill-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border-radius: 16px;
+            border: 1.5px solid #d7e4ed;
+            background: #ffffff;
+            font-family: inherit;
+            transition: border 0.1s, box-shadow 0.1s;
+            margin-bottom: 0.4rem;
+        }
+        .fill-input:focus {
+            outline: none;
+            border-color: #3d7ea6;
+            box-shadow: 0 0 0 3px rgba(61, 126, 166, 0.15);
+        }
+        .fill-input.correct-input {
+            border-color: #2b8c5e;
+            background: #eafaf1;
+        }
+        .fill-input.wrong-input {
+            border-color: #c24a4a;
+            background: #fff2f2;
+        }
+        .feedback {
+            font-size: 0.95rem;
+            margin-top: 0.6rem;
+            padding: 0.6rem 0.9rem;
+            border-radius: 12px;
+            background: #e9f2fa;
+            color: #1e3b4f;
+            border-left: 4px solid #5e93b5;
+        }
+        .feedback.correct-fb {
+            background: #e1f3e8;
+            border-left-color: #2b8c5e;
+        }
+        .feedback.wrong-fb {
+            background: #fce8e8;
+            border-left-color: #c24a4a;
+        }
+        .btn-check {
+            background: #1e3b4f;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            font-size: 1.15rem;
+            font-weight: 500;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 1.8rem;
+            letter-spacing: 0.3px;
+            box-shadow: 0 6px 14px rgba(20, 50, 70, 0.2);
+        }
+        .btn-check:hover {
+            background: #14303f;
+        }
+        .btn-check:active {
+            transform: scale(0.98);
+        }
+        .score-banner {
+            margin-top: 1.8rem;
+            padding: 1.4rem 1.6rem;
+            border-radius: 24px;
+            font-weight: 500;
+            text-align: center;
+            font-size: 1.2rem;
+            transition: background 0.2s, color 0.2s;
+            scroll-margin-top: 1rem;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+        .score-green { background: #d9f0e3; color: #115a36; border: 1px solid #9fd3b4; }
+        .score-amber { background: #fef3d6; color: #7a5c1a; border: 1px solid #e6cf92; }
+        .score-red { background: #fbe2e2; color: #8f3030; border: 1px solid #e2a6a6; }
+        .small-note {
+            font-size: 0.9rem;
+            margin-top: 0.6rem;
+            opacity: 0.8;
+        }
+
+        /* ----- TRY AGAIN BUTTON ----- */
+        .btn-retry {
+            background: #ffffff;
+            color: #1e3b4f;
+            border: 2px solid #1e3b4f;
+            padding: 0.85rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.1s;
+            margin-top: 1rem;
+            letter-spacing: 0.3px;
+            display: none;
+        }
+        .btn-retry:hover {
+            background: #1e3b4f;
+            color: white;
+        }
+        .btn-retry:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>🌀 Inversion with time adverbials</h1>
+    <div class="subhead">Never, rarely, seldom, hardly ever, no sooner… than, hardly… when — practice B2+</div>
+
+    <!-- =========== NAME ENTRY =========== -->
+    <div class="name-section" id="nameSection">
+        <h2>👋 Welcome! What's your name?</h2>
+        <p>Please enter your name before starting the quiz.</p>
+        <div class="name-input-group">
+            <input type="text" id="studentName" placeholder="Your name here..." autocomplete="off" maxlength="40">
+            <button class="btn-start" id="startBtn">Start</button>
+        </div>
+        <div class="name-error" id="nameError">Please enter your name to continue.</div>
+    </div>
+
+    <!-- =========== GREETING (shown after name entered) =========== -->
+    <div class="greeting" id="greeting"></div>
+
+    <!-- =========== QUIZ AREA (hidden until start) =========== -->
+    <div id="quizArea">
+        <!-- EXERCISE 1 -->
+        <div class="exercise-title">📝 Exercise 1: Multiple choice <span>10 questions</span></div>
+        <div id="mc-container"></div>
+
+        <!-- EXERCISE 2 -->
+        <div class="exercise-title" style="margin-top: 2.2rem;">✍️ Exercise 2: Fill in the blank <span>10 questions</span></div>
+        <div id="fib-container"></div>
+
+        <!-- CHECK BUTTON -->
+        <button class="btn-check" id="checkBtn">Check My Answers</button>
+
+        <!-- SCORE BANNER -->
+        <div id="scoreBanner" class="score-banner" style="display: none;"></div>
+
+        <!-- TRY AGAIN BUTTON -->
+        <button class="btn-retry" id="retryBtn">🔄 Try the Quiz again</button>
+    </div>
+</div>
+
+<script>
+    // ----------------------------------------------------------------
+    // 1. DATA – EDIT QUESTIONS HERE
+    // ----------------------------------------------------------------
+    const multipleChoiceQuestions = [
+        {
+            type: "mc",
+            question: "______ have I seen such a breathtaking sunset.",
+            options: ["Never", "Rarely", "Seldom"],
+            correct: 0,
+            explanation: "Negative adverbial 'Never' at the start requires inversion: Never + have + I + seen. 'Rarely' and 'Seldom' would also invert but don't fit the dramatic meaning 'never before'."
+        },
+        {
+            type: "mc",
+            question: "Rarely ______ she go to the gym after work.",
+            options: ["does", "do", "is"],
+            correct: 0,
+            explanation: "Present simple with 'she' needs auxiliary 'does' after 'Rarely'. The main verb 'go' stays in base form."
+        },
+        {
+            type: "mc",
+            question: "No sooner ______ we left the house than it started raining.",
+            options: ["had", "have", "did"],
+            correct: 0,
+            explanation: "'No sooner ... than' uses the past perfect (had + past participle). So: No sooner had we left ... than."
+        },
+        {
+            type: "mc",
+            question: "Seldom ______ such dedication in a young athlete.",
+            options: ["do I see", "I see", "I do see"],
+            correct: 0,
+            explanation: "After 'Seldom' we invert: Seldom + do + I + see. The auxiliary 'do' is needed because there is no other auxiliary."
+        },
+        {
+            type: "mc",
+            question: "Hardly ever ______ she miss a day of class.",
+            options: ["does", "do", "is"],
+            correct: 0,
+            explanation: "Present simple, third person 'she' → auxiliary 'does'. Main verb 'miss' stays base."
+        },
+        {
+            type: "mc",
+            question: "Hardly ______ he arrived when the phone rang.",
+            options: ["had", "has", "did"],
+            correct: 0,
+            explanation: "'Hardly ... when' pairs with past perfect: Hardly had he arrived when ..."
+        },
+        {
+            type: "mc",
+            question: "Barely ______ the meeting started when the fire alarm went off.",
+            options: ["had", "has", "did"],
+            correct: 0,
+            explanation: "'Barely ... when' also uses past perfect: Barely had the meeting started when ..."
+        },
+        {
+            type: "mc",
+            question: "Scarcely ______ they finished dinner when the guests arrived.",
+            options: ["had", "have", "did"],
+            correct: 0,
+            explanation: "'Scarcely ... when' follows the same pattern: Scarcely had they finished ..."
+        },
+        {
+            type: "mc",
+            question: "No sooner ______ we sat down than the waiter brought the menu.",
+            options: ["had", "have", "did"],
+            correct: 0,
+            explanation: "'No sooner' always pairs with 'than' and requires past perfect: No sooner had we sat down than ..."
+        },
+        {
+            type: "mc",
+            question: "Rarely ______ such a talented group of students.",
+            options: ["have I taught", "I have taught", "I taught"],
+            correct: 0,
+            explanation: "Inversion after 'Rarely': Rarely + have + I + taught. The present perfect is used here."
+        }
+    ];
+
+    const fillInBlankQuestions = [
+        {
+            type: "fib",
+            question: "Never before ______ (I / see) such a brilliant performance.",
+            correct: ["have I seen", "had I seen"],
+            explanation: "'Never before' + inversion. Present perfect (have I seen) or past perfect (had I seen) both work depending on context. Accept both."
+        },
+        {
+            type: "fib",
+            question: "Rarely ______ (she / eat) fast food, but today she made an exception.",
+            correct: ["does she eat"],
+            explanation: "Present simple with 'she' → auxiliary 'does', main verb 'eat' base form: does she eat."
+        },
+        {
+            type: "fib",
+            question: "Seldom ______ (we / have) the chance to travel together.",
+            correct: ["do we have"],
+            explanation: "Present simple, subject 'we' → auxiliary 'do': do we have. Main verb 'have' stays base."
+        },
+        {
+            type: "fib",
+            question: "Hardly ever ______ (he / go) to the cinema these days.",
+            correct: ["does he go"],
+            explanation: "Third person singular → 'does he go' (present simple, main verb base)."
+        },
+        {
+            type: "fib",
+            question: "No sooner ______ (they / arrive) than the storm began.",
+            correct: ["had they arrived"],
+            explanation: "No sooner ... than → past perfect: had they arrived."
+        },
+        {
+            type: "fib",
+            question: "Hardly ______ (she / sit) down when the phone rang.",
+            correct: ["had she sat"],
+            explanation: "Hardly ... when → past perfect: had she sat (past participle of 'sit')."
+        },
+        {
+            type: "fib",
+            question: "Barely ______ (I / finish) my homework when my friends called.",
+            correct: ["had I finished"],
+            explanation: "Barely ... when → past perfect: had I finished."
+        },
+        {
+            type: "fib",
+            question: "Scarcely ______ (the concert / begin) when the power went out.",
+            correct: ["had the concert begun"],
+            explanation: "Scarcely ... when → past perfect: had the concert begun. Past participle 'begun'."
+        },
+        {
+            type: "fib",
+            question: "Rarely ______ (I / be) so impressed by a student's progress.",
+            correct: ["have I been", "had I been"],
+            explanation: "Present perfect (have I been) or past perfect (had I been). Both are grammatically correct in context."
+        },
+        {
+            type: "fib",
+            question: "No sooner ______ (we / start) eating than the doorbell rang.",
+            correct: ["had we started"],
+            explanation: "No sooner ... than → past perfect: had we started."
+        }
+    ];
+
+    // ----------------------------------------------------------------
+    // 2. DOM REFERENCES
+    // ----------------------------------------------------------------
+    const nameSection = document.getElementById('nameSection');
+    const studentNameInput = document.getElementById('studentName');
+    const startBtn = document.getElementById('startBtn');
+    const nameError = document.getElementById('nameError');
+    const greeting = document.getElementById('greeting');
+    const quizArea = document.getElementById('quizArea');
+    const mcContainer = document.getElementById('mc-container');
+    const fibContainer = document.getElementById('fib-container');
+    const checkBtn = document.getElementById('checkBtn');
+    const scoreBanner = document.getElementById('scoreBanner');
+    const retryBtn = document.getElementById('retryBtn');
+
+    // ----------------------------------------------------------------
+    // 3. STATE
+    // ----------------------------------------------------------------
+    let studentName = '';
+
+    // ----------------------------------------------------------------
+    // 4. HELPER FUNCTIONS
+    // ----------------------------------------------------------------
+    function normalise(str) {
+        return str.toLowerCase().trim().replace(/\.+$/, '').replace(/\s+/g, ' ');
+    }
+
+    // ----------------------------------------------------------------
+    // 5. RENDER QUIZ (called once at load, but hidden until start)
+    // ----------------------------------------------------------------
+    function renderMultipleChoice() {
+        let html = '';
+        multipleChoiceQuestions.forEach((q, idx) => {
+            const qNumber = idx + 1;
+            html += `<div class="question-item" id="mc-${idx}" data-index="${idx}">`;
+            html += `<div class="q-text"><span class="q-num">${qNumber}</span>${q.question}</div>`;
+            html += `<div class="options" id="mc-options-${idx}">`;
+            q.options.forEach((opt, optIdx) => {
+                const letter = String.fromCharCode(65 + optIdx);
+                html += `<label class="option" id="mc-opt-${idx}-${optIdx}">`;
+                html += `<input type="radio" name="mc-${idx}" value="${optIdx}" data-qidx="${idx}" data-optidx="${optIdx}">`;
+                html += `<span>${letter}) ${opt}</span>`;
+                html += `</label>`;
+            });
+            html += `</div>`;
+            html += `<div class="feedback" id="mc-feedback-${idx}" style="display: none;"></div>`;
+            html += `</div>`;
+        });
+        mcContainer.innerHTML = html;
+    }
+
+    function renderFillInBlank() {
+        let html = '';
+        fillInBlankQuestions.forEach((q, idx) => {
+            const qNumber = idx + 1;
+            html += `<div class="question-item" id="fib-${idx}" data-index="${idx}">`;
+            html += `<div class="q-text"><span class="q-num">${qNumber}</span>${q.question}</div>`;
+            html += `<input type="text" class="fill-input" id="fib-input-${idx}" placeholder="Type your answer..." autocomplete="off">`;
+            html += `<div class="feedback" id="fib-feedback-${idx}" style="display: none;"></div>`;
+            html += `</div>`;
+        });
+        fibContainer.innerHTML = html;
+    }
+
+    // ----------------------------------------------------------------
+    // 6. CHECK ANSWERS
+    // ----------------------------------------------------------------
+    function checkAnswers() {
+        // Reset all visual highlights
+        document.querySelectorAll('.question-item').forEach(el => {
+            el.classList.remove('correct-highlight', 'wrong-highlight');
+        });
+        document.querySelectorAll('.option').forEach(el => {
+            el.classList.remove('correct-option', 'wrong-option', 'selected');
+        });
+        document.querySelectorAll('.fill-input').forEach(el => {
+            el.classList.remove('correct-input', 'wrong-input');
+        });
+        document.querySelectorAll('.feedback').forEach(el => {
+            el.style.display = 'none';
+            el.classList.remove('correct-fb', 'wrong-fb');
+        });
+
+        let totalScore = 0;
+        const totalQuestions = multipleChoiceQuestions.length + fillInBlankQuestions.length;
+
+        // ---- MULTIPLE CHOICE ----
+        multipleChoiceQuestions.forEach((q, idx) => {
+            const selectedRadio = document.querySelector(`input[name="mc-${idx}"]:checked`);
+            const feedbackEl = document.getElementById(`mc-feedback-${idx}`);
+            const questionItem = document.getElementById(`mc-${idx}`);
+
+            const correctOptIdx = q.correct;
+            const correctOptionLabel = document.getElementById(`mc-opt-${idx}-${correctOptIdx}`);
+            if (correctOptionLabel) correctOptionLabel.classList.add('correct-option');
+
+            if (selectedRadio) {
+                const selectedVal = parseInt(selectedRadio.value, 10);
+                const selectedOptionLabel = document.getElementById(`mc-opt-${idx}-${selectedVal}`);
+                if (selectedVal === correctOptIdx) {
+                    totalScore++;
+                    questionItem.classList.add('correct-highlight');
+                    if (selectedOptionLabel) selectedOptionLabel.classList.add('correct-option');
+                    feedbackEl.className = 'feedback correct-fb';
+                } else {
+                    questionItem.classList.add('wrong-highlight');
+                    if (selectedOptionLabel) selectedOptionLabel.classList.add('wrong-option');
+                    feedbackEl.className = 'feedback wrong-fb';
+                }
+                selectedOptionLabel?.classList.add('selected');
+            } else {
+                questionItem.classList.add('wrong-highlight');
+                feedbackEl.className = 'feedback wrong-fb';
+            }
+
+            feedbackEl.style.display = 'block';
+            feedbackEl.textContent = q.explanation;
+        });
+
+        // ---- FILL IN THE BLANK ----
+        fillInBlankQuestions.forEach((q, idx) => {
+            const inputEl = document.getElementById(`fib-input-${idx}`);
+            const feedbackEl = document.getElementById(`fib-feedback-${idx}`);
+            const questionItem = document.getElementById(`fib-${idx}`);
+            const userAnswer = inputEl.value.trim();
+            const normalisedUser = normalise(userAnswer);
+            const acceptedAnswers = q.correct.map(ans => normalise(ans));
+            const isCorrect = acceptedAnswers.includes(normalisedUser);
+
+            if (isCorrect) {
+                totalScore++;
+                questionItem.classList.add('correct-highlight');
+                inputEl.classList.add('correct-input');
+                feedbackEl.className = 'feedback correct-fb';
+            } else {
+                questionItem.classList.add('wrong-highlight');
+                inputEl.classList.add('wrong-input');
+                feedbackEl.className = 'feedback wrong-fb';
+            }
+            feedbackEl.style.display = 'block';
+            feedbackEl.textContent = q.explanation;
+        });
+
+        // ---- SCORE BANNER WITH STUDENT NAME ----
+        const percentage = Math.round((totalScore / totalQuestions) * 100);
+        let bandClass = '';
+        let message = '';
+        if (percentage >= 80) {
+            bandClass = 'score-green';
+            message = '🌟 Excellent! You have a strong grasp of inversion. Keep it up!';
+        } else if (percentage >= 50) {
+            bandClass = 'score-amber';
+            message = '📖 Good effort — review the feedback and try again. You’re getting there!';
+        } else {
+            bandClass = 'score-red';
+            message = '💪 Keep practising! Read the explanations carefully and retry.';
+        }
+
+        scoreBanner.className = `score-banner ${bandClass}`;
+        scoreBanner.innerHTML = `<strong>${studentName}, your result this time is ${totalScore} / ${totalQuestions} — ${percentage}%</strong><div class="small-note">${message}</div>`;
+        scoreBanner.style.display = 'block';
+
+        // Show the retry button
+        retryBtn.style.display = 'block';
+
+        // Smooth scroll to banner
+        setTimeout(() => {
+            scoreBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
+    }
+
+    // ----------------------------------------------------------------
+    // 7. START QUIZ (called when name is submitted)
+    // ----------------------------------------------------------------
+    function startQuiz() {
+        const name = studentNameInput.value.trim();
+        if (!name) {
+            nameError.style.display = 'block';
+            studentNameInput.focus();
+            return;
+        }
+        nameError.style.display = 'none';
+        studentName = name;
+
+        // Hide name section, show greeting and quiz
+        nameSection.style.display = 'none';
+        greeting.textContent = `Hi ${studentName}! Good luck with the quiz. Read each sentence carefully.`;
+        greeting.style.display = 'block';
+        quizArea.style.display = 'block';
+
+        // Render questions (only once)
+        renderMultipleChoice();
+        renderFillInBlank();
+
+        // Attach radio change listeners for visual selection
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const name = this.name;
+                document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+                    r.closest('.option')?.classList.remove('selected');
+                });
+                this.closest('.option')?.classList.add('selected');
+            });
+        });
+
+        // Smooth scroll to the first exercise
+        setTimeout(() => {
+            quizArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+
+    // ----------------------------------------------------------------
+    // 8. RESET QUIZ (Try again)
+    // ----------------------------------------------------------------
+    function resetQuiz() {
+        // Clear all radio selections
+        document.querySelectorAll('input[type="radio"]').forEach(r => { r.checked = false; });
+        // Clear all text inputs
+        document.querySelectorAll('.fill-input').forEach(inp => { inp.value = ''; });
+        // Clear all highlights and feedback
+        document.querySelectorAll('.question-item').forEach(el => {
+            el.classList.remove('correct-highlight', 'wrong-highlight');
+        });
+        document.querySelectorAll('.option').forEach(el => {
+            el.classList.remove('correct-option', 'wrong-option', 'selected');
+        });
+        document.querySelectorAll('.fill-input').forEach(el => {
+            el.classList.remove('correct-input', 'wrong-input');
+        });
+        document.querySelectorAll('.feedback').forEach(el => {
+            el.style.display = 'none';
+            el.classList.remove('correct-fb', 'wrong-fb');
+            el.textContent = '';
+        });
+        // Hide score banner and retry button
+        scoreBanner.style.display = 'none';
+        retryBtn.style.display = 'none';
+
+        // Scroll back to top of quiz
+        quizArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ----------------------------------------------------------------
+    // 9. EVENT LISTENERS
+    // ----------------------------------------------------------------
+    startBtn.addEventListener('click', startQuiz);
+    studentNameInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            startQuiz();
+        }
+    });
+    studentNameInput.addEventListener('input', () => {
+        nameError.style.display = 'none';
+    });
+
+    checkBtn.addEventListener('click', checkAnswers);
+    retryBtn.addEventListener('click', resetQuiz);
+</script>
+</body>
+</html>
