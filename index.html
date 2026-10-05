@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inversion with Time Adverbials · B2+ practice</title>
+    <title>Inversion with Time Adverbials</title>
     <style>
         /* ----- modern, soft palette, mobile-friendly ----- */
         * {
@@ -335,12 +335,12 @@
 </head>
 <body>
 <div class="card">
-    <h1>🌀 Inversion with time adverbials</h1>
-    <div class="subhead">Never, rarely, seldom, hardly ever, no sooner… than, hardly… when — practice B2+</div>
+    <h1>Inversion with time adverbials</h1>
+    <div class="subhead">Never, rarely, seldom, hardly ever, no sooner… than, hardly… when</div>
 
     <!-- =========== NAME ENTRY =========== -->
     <div class="name-section" id="nameSection">
-        <h2>👋 Welcome! What's your name?</h2>
+        <h2>Hello! What's your name?</h2>
         <p>Please enter your name before starting the quiz.</p>
         <div class="name-input-group">
             <input type="text" id="studentName" placeholder="Your name here..." autocomplete="off" maxlength="40">
@@ -378,13 +378,17 @@
     // 1. DATA – EDIT QUESTIONS HERE
     // ----------------------------------------------------------------
     const multipleChoiceQuestions = [
-        {
-            type: "mc",
-            question: "______ have I seen such a breathtaking sunset.",
-            options: ["Never", "Rarely", "Seldom"],
-            correct: 0,
-            explanation: "Negative adverbial 'Never' at the start requires inversion: Never + have + I + seen. 'Rarely' and 'Seldom' would also invert but don't fit the dramatic meaning 'never before'."
-        },
+{
+    type: "mc",
+    question: "Never ______ such a breathtaking sunset.",
+    options: [
+        "have I seen",
+        "I have seen",
+        "have seen I"
+    ],
+    correct: 0,
+    explanation: "After the negative adverbial 'Never', we invert the auxiliary and subject: Never + have + I + seen. Option B is normal word order (no inversion). Option C incorrectly places the subject after the main verb."
+}
         {
             type: "mc",
             question: "Rarely ______ she go to the gym after work.",
@@ -406,27 +410,36 @@
             correct: 0,
             explanation: "After 'Seldom' we invert: Seldom + do + I + see. The auxiliary 'do' is needed because there is no other auxiliary."
         },
+     {
+    type: "mc",
+    question: "Barely ______ when the fire alarm went off.",
+    options: [
+        "had the meeting started",
+        "the meeting had started",
+        "had started the meeting"
+    ],
+    correct: 0,
+    explanation: "After 'Barely', we invert the auxiliary 'had' and the subject 'the meeting': Barely + had + the meeting + started. Option B is normal word order (no inversion). Option C incorrectly places the subject after the main verb."
+},
         {
             type: "mc",
-            question: "Hardly ever ______ she miss a day of class.",
+            question: "Hardly ever ______ he miss a day of class.",
             options: ["does", "do", "is"],
             correct: 0,
-            explanation: "Present simple, third person 'she' → auxiliary 'does'. Main verb 'miss' stays base."
+            explanation: "Present simple, third person 'he' → auxiliary 'does'. Main verb 'miss' stays base."
         },
         {
-            type: "mc",
-            question: "Hardly ______ he arrived when the phone rang.",
-            options: ["had", "has", "did"],
-            correct: 0,
-            explanation: "'Hardly ... when' pairs with past perfect: Hardly had he arrived when ..."
-        },
-        {
-            type: "mc",
-            question: "Barely ______ the meeting started when the fire alarm went off.",
-            options: ["had", "has", "did"],
-            correct: 0,
-            explanation: "'Barely ... when' also uses past perfect: Barely had the meeting started when ..."
-        },
+    type: "mc",
+    question: "Hardly ______ when the phone rang.",
+    options: [
+        "had he arrived",
+        "he had arrived",
+        "had arrived he"
+    ],
+    correct: 0,
+    explanation: "After 'Hardly', we invert the auxiliary 'had' and the subject 'he': Hardly + had + he + arrived. Option B is normal word order (no inversion). Option C incorrectly places the subject after the main verb."
+},
+      
         {
             type: "mc",
             question: "Scarcely ______ they finished dinner when the guests arrived.",
@@ -451,66 +464,72 @@
     ];
 
     const fillInBlankQuestions = [
+      {
+    type: "fib",
+    question: "I have never before seen such a brilliant performance. → Never before ______ such a brilliant performance.",
+    correct: ["have I seen"],
+    explanation: "'Never before' + inversion. The original sentence uses the Present Perfect ('have never seen'), so we invert the auxiliary 'have' and the subject 'I': Never before + have + I + seen."
+},
         {
-            type: "fib",
-            question: "Never before ______ (I / see) such a brilliant performance.",
-            correct: ["have I seen", "had I seen"],
-            explanation: "'Never before' + inversion. Present perfect (have I seen) or past perfect (had I seen) both work depending on context. Accept both."
-        },
-        {
-            type: "fib",
-            question: "Rarely ______ (she / eat) fast food, but today she made an exception.",
-            correct: ["does she eat"],
-            explanation: "Present simple with 'she' → auxiliary 'does', main verb 'eat' base form: does she eat."
-        },
-        {
-            type: "fib",
-            question: "Seldom ______ (we / have) the chance to travel together.",
-            correct: ["do we have"],
-            explanation: "Present simple, subject 'we' → auxiliary 'do': do we have. Main verb 'have' stays base."
-        },
-        {
-            type: "fib",
-            question: "Hardly ever ______ (he / go) to the cinema these days.",
-            correct: ["does he go"],
-            explanation: "Third person singular → 'does he go' (present simple, main verb base)."
-        },
-        {
-            type: "fib",
-            question: "No sooner ______ (they / arrive) than the storm began.",
-            correct: ["had they arrived"],
-            explanation: "No sooner ... than → past perfect: had they arrived."
-        },
-        {
-            type: "fib",
-            question: "Hardly ______ (she / sit) down when the phone rang.",
-            correct: ["had she sat"],
-            explanation: "Hardly ... when → past perfect: had she sat (past participle of 'sit')."
-        },
-        {
-            type: "fib",
-            question: "Barely ______ (I / finish) my homework when my friends called.",
-            correct: ["had I finished"],
-            explanation: "Barely ... when → past perfect: had I finished."
-        },
-        {
-            type: "fib",
-            question: "Scarcely ______ (the concert / begin) when the power went out.",
-            correct: ["had the concert begun"],
-            explanation: "Scarcely ... when → past perfect: had the concert begun. Past participle 'begun'."
-        },
-        {
-            type: "fib",
-            question: "Rarely ______ (I / be) so impressed by a student's progress.",
-            correct: ["have I been", "had I been"],
-            explanation: "Present perfect (have I been) or past perfect (had I been). Both are grammatically correct in context."
-        },
-        {
-            type: "fib",
-            question: "No sooner ______ (we / start) eating than the doorbell rang.",
-            correct: ["had we started"],
-            explanation: "No sooner ... than → past perfect: had we started."
-        }
+    type: "fib",
+    question: "Never before ______ (I / see) such a spectacular fireworks display.",
+    correct: ["have I seen", "had I seen"],
+    explanation: "Present perfect (have I seen) or past perfect (had I seen). Both are grammatically correct depending on context."
+},
+{
+    type: "fib",
+    question: "Seldom ______ (she / speak) in public because she is very shy.",
+    correct: ["does she speak"],
+    explanation: "Present simple, third person singular → auxiliary 'does', main verb 'speak' base form: does she speak."
+},
+{
+    type: "fib",
+    question: "Hardly ______ (I / close) the door when the phone rang.",
+    correct: ["had I closed"],
+    explanation: "Hardly ... when → past perfect: had I closed."
+},
+{
+    type: "fib",
+    question: "Rarely ______ (they / visit) their grandparents nowadays.",
+    correct: ["do they visit"],
+    explanation: "Present simple, subject 'they' → auxiliary 'do', main verb 'visit' base form: do they visit."
+},
+{
+    type: "fib",
+    question: "No sooner ______ (he / leave) the house than he remembered he hadn't locked the door.",
+    correct: ["had he left"],
+    explanation: "No sooner ... than → past perfect: had he left."
+},
+{
+    type: "fib",
+    question: "Barely ______ (she / step) outside when it started to pour with rain.",
+    correct: ["had she stepped"],
+    explanation: "Barely ... when → past perfect: had she stepped."
+},
+{
+    type: "fib",
+    question: "Never before ______ (we / be) so afraid as on that awful night.",
+    correct: ["had we been"],
+    explanation: "Past perfect: had we been. 'Never before' refers to a time before a past event."
+},
+{
+    type: "fib",
+    question: "Scarcely ______ (he / finish) his speech when the audience burst into applause.",
+    correct: ["had he finished"],
+    explanation: "Scarcely ... when → past perfect: had he finished."
+},
+{
+    type: "fib",
+    question: "Seldom ______ (I / eat) breakfast before 10 a.m. last year.",
+    correct: ["did I eat"],
+    explanation: "Past simple, no auxiliary in original → add 'did', main verb 'eat' base form: did I eat."
+},
+{
+    type: "fib",
+    question: "Hardly ever ______ (she / go) to the cinema alone when she lived in London.",
+    correct: ["did she go"],
+    explanation: "Past simple, no auxiliary in original → add 'did', main verb 'go' base form: did she go."
+}
     ];
 
     // ----------------------------------------------------------------
