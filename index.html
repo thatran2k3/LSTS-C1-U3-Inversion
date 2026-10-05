@@ -336,7 +336,7 @@
 <body>
 <div class="card">
     <h1>Inversion with time adverbials</h1>
-    <div class="subhead">Never, rarely, seldom, hardly ever, barely/hardly/scarcely…when, no sooner… than</div>
+    <div class="subhead">Never, rarely, seldom, hardly ever, no sooner… than, hardly… when</div>
 
     <!-- =========== NAME ENTRY =========== -->
     <div class="name-section" id="nameSection">
@@ -359,7 +359,7 @@
         <div id="mc-container"></div>
 
         <!-- EXERCISE 2 -->
-        <div class="exercise-title" style="margin-top: 2.2rem;">✍️ Exercise 2: Fill in the blank <span>10 questions</span></div>
+        <div class="exercise-title" style="margin-top: 2.2rem;">✍️ Exercise 2: Complete the second sentence <span>10 questions</span></div>
         <div id="fib-container"></div>
 
         <!-- CHECK BUTTON -->
@@ -377,56 +377,58 @@
     // ----------------------------------------------------------------
     // 1. DATA – EDIT QUESTIONS HERE
     // ----------------------------------------------------------------
+    // MULTIPLE CHOICE – correct answers are now distributed across A, B, and C.
+    // Make sure each question's "correct" index matches the position of the right option.
     const multipleChoiceQuestions = [
         {
             type: "mc",
             question: "Never ______ such a breathtaking sunset.",
             options: [
-                "have I seen",
                 "I have seen",
+                "have I seen",
                 "have seen I"
             ],
-            correct: 0,
-            explanation: "After the negative adverbial 'Never', we invert the auxiliary and subject: Never + have + I + seen. Option B is normal word order (no inversion). Option C incorrectly places the subject after the main verb."
+            correct: 1,
+            explanation: "After the negative adverbial 'Never', we invert the auxiliary and subject: Never + have + I + seen. Option A is normal word order (no inversion). Option C incorrectly places the subject after the main verb."
         },
         {
             type: "mc",
             question: "Rarely ______ she go to the gym after work.",
-            options: ["does", "do", "is"],
-            correct: 0,
-            explanation: "Present simple with 'she' needs auxiliary 'does' after 'Rarely'. The main verb 'go' stays in base form."
+            options: ["do", "is", "does"],
+            correct: 2,
+            explanation: "Present simple with 'she' needs auxiliary 'does' after 'Rarely'. The main verb 'go' stays in base form: Rarely does she go..."
         },
         {
             type: "mc",
             question: "No sooner ______ we left the house than it started raining.",
-            options: ["had", "have", "did"],
-            correct: 0,
+            options: ["have", "had", "did"],
+            correct: 1,
             explanation: "'No sooner ... than' uses the past perfect (had + past participle). So: No sooner had we left ... than."
         },
         {
             type: "mc",
             question: "Seldom ______ such dedication in a young athlete.",
-            options: ["do I see", "I see", "I do see"],
-            correct: 0,
-            explanation: "After 'Seldom' we invert: Seldom + do + I + see. The auxiliary 'do' is needed because there is no other auxiliary."
+            options: ["I see", "I do see", "do I see"],
+            correct: 2,
+            explanation: "After 'Seldom' we invert: Seldom + do + I + see. The auxiliary 'do' is needed because there is no other auxiliary. Options A and B keep normal word order."
         },
         {
             type: "mc",
             question: "Barely ______ when the fire alarm went off.",
             options: [
-                "had the meeting started",
                 "the meeting had started",
+                "had the meeting started",
                 "had started the meeting"
             ],
-            correct: 0,
-            explanation: "After 'Barely', we invert the auxiliary 'had' and the subject 'the meeting': Barely + had + the meeting + started. Option B is normal word order (no inversion). Option C incorrectly places the subject after the main verb."
+            correct: 1,
+            explanation: "After 'Barely', we invert the auxiliary 'had' and the subject 'the meeting': Barely + had + the meeting + started. Option A is normal word order (no inversion). Option C incorrectly places the subject after the main verb."
         },
         {
             type: "mc",
             question: "Hardly ever ______ he miss a day of class.",
-            options: ["does", "do", "is"],
-            correct: 0,
-            explanation: "Present simple, third person 'he' → auxiliary 'does'. Main verb 'miss' stays base."
+            options: ["is", "does", "do"],
+            correct: 1,
+            explanation: "Present simple, third person 'he' → auxiliary 'does'. Main verb 'miss' stays base: Hardly ever does he miss..."
         },
         {
             type: "mc",
@@ -442,26 +444,30 @@
         {
             type: "mc",
             question: "Scarcely ______ they finished dinner when the guests arrived.",
-            options: ["had", "have", "did"],
-            correct: 0,
-            explanation: "'Scarcely ... when' follows the same pattern: Scarcely had they finished ..."
+            options: ["have", "did", "had"],
+            correct: 2,
+            explanation: "'Scarcely ... when' follows the same pattern: Scarcely had they finished ... (past perfect)."
         },
         {
             type: "mc",
             question: "No sooner ______ we sat down than the waiter brought the menu.",
-            options: ["had", "have", "did"],
-            correct: 0,
+            options: ["have", "did", "had"],
+            correct: 2,
             explanation: "'No sooner' always pairs with 'than' and requires past perfect: No sooner had we sat down than ..."
         },
         {
             type: "mc",
             question: "Rarely ______ such a talented group of students.",
-            options: ["have I taught", "I have taught", "I taught"],
-            correct: 0,
-            explanation: "Inversion after 'Rarely': Rarely + have + I + taught. The present perfect is used here."
+            options: ["I have taught", "have I taught", "I taught"],
+            correct: 1,
+            explanation: "Inversion after 'Rarely': Rarely + have + I + taught. The present perfect is used here. Options A and C keep normal word order."
         }
     ];
 
+    // FILL IN THE BLANK – sentence transformation tasks.
+    // Each question gives a first sentence and the start of a second sentence;
+    // students type the missing part (including the inversion).
+    // "correct" is an array of accepted answers (lowercase, no trailing period needed).
     const fillInBlankQuestions = [
         {
             type: "fib",
@@ -471,57 +477,57 @@
         },
         {
             type: "fib",
-            question: "Seldom ______ (she / speak) in public because she is very shy.",
+            question: "She rarely speaks in public because she is very shy. → Rarely ______ in public because she is very shy.",
             correct: ["does she speak"],
-            explanation: "Present simple, third person singular → auxiliary 'does', main verb 'speak' base form: does she speak."
+            explanation: "Present simple, third person singular → auxiliary 'does', main verb 'speak' base form: Rarely does she speak..."
         },
         {
             type: "fib",
-            question: "Hardly ______ (I / close) the door when the phone rang.",
+            question: "I had hardly closed the door when the phone rang. → Hardly ______ the door when the phone rang.",
             correct: ["had I closed"],
-            explanation: "Hardly ... when → past perfect: had I closed."
+            explanation: "Hardly ... when → past perfect, with inversion: Hardly had I closed..."
         },
         {
             type: "fib",
-            question: "Rarely ______ (they / visit) their grandparents nowadays.",
+            question: "They rarely visit their grandparents nowadays. → Rarely ______ their grandparents nowadays.",
             correct: ["do they visit"],
-            explanation: "Present simple, subject 'they' → auxiliary 'do', main verb 'visit' base form: do they visit."
+            explanation: "Present simple, subject 'they' → auxiliary 'do', main verb 'visit' base form: Rarely do they visit..."
         },
         {
             type: "fib",
-            question: "No sooner ______ (he / leave) the house than he remembered he hadn't locked the door.",
+            question: "He had no sooner left the house than he remembered he hadn't locked the door. → No sooner ______ the house than he remembered he hadn't locked the door.",
             correct: ["had he left"],
-            explanation: "No sooner ... than → past perfect: had he left."
+            explanation: "No sooner ... than → past perfect with inversion: No sooner had he left..."
         },
         {
             type: "fib",
-            question: "Barely ______ (she / step) outside when it started to pour with rain.",
+            question: "She had barely stepped outside when it started to pour with rain. → Barely ______ outside when it started to pour with rain.",
             correct: ["had she stepped"],
-            explanation: "Barely ... when → past perfect: had she stepped."
+            explanation: "Barely ... when → past perfect with inversion: Barely had she stepped..."
         },
         {
             type: "fib",
-            question: "Never before ______ (we / be) so afraid as on that awful night.",
+            question: "We had never before been so afraid as on that awful night. → Never before ______ so afraid as on that awful night.",
             correct: ["had we been"],
-            explanation: "Past perfect: had we been. 'Never before' refers to a time before a past event."
+            explanation: "Past perfect with inversion: Never before had we been... 'Never before' refers to a time before a past event."
         },
         {
             type: "fib",
-            question: "Scarcely ______ (he / finish) his speech when the audience burst into applause.",
+            question: "He had scarcely finished his speech when the audience burst into applause. → Scarcely ______ his speech when the audience burst into applause.",
             correct: ["had he finished"],
-            explanation: "Scarcely ... when → past perfect: had he finished."
+            explanation: "Scarcely ... when → past perfect with inversion: Scarcely had he finished..."
         },
         {
             type: "fib",
-            question: "Seldom ______ (I / eat) breakfast before 10 a.m. last year.",
+            question: "I seldom ate breakfast before 10 a.m. last year. → Seldom ______ breakfast before 10 a.m. last year.",
             correct: ["did I eat"],
-            explanation: "Past simple, no auxiliary in original → add 'did', main verb 'eat' base form: did I eat."
+            explanation: "Past simple, no auxiliary in original → add 'did', main verb 'eat' base form: Seldom did I eat..."
         },
         {
             type: "fib",
-            question: "Hardly ever ______ (she / go) to the cinema alone when she lived in London.",
+            question: "She hardly ever went to the cinema alone when she lived in London. → Hardly ever ______ to the cinema alone when she lived in London.",
             correct: ["did she go"],
-            explanation: "Past simple, no auxiliary in original → add 'did', main verb 'go' base form: did she go."
+            explanation: "Past simple, no auxiliary in original → add 'did', main verb 'go' base form: Hardly ever did she go..."
         }
     ];
 
